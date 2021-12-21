@@ -70,3 +70,37 @@ library(tidyverse)
   %>% write.csv("periods_1000.csv")
 )
 
+(patients <- read_csv("csv/patients.csv"))
+
+(patients_10000 <- sample(patients$Id, 10000))
+
+(
+  patients
+  %>% filter(Id %in% patients_10000)
+  %>% write.csv("patients_10000.csv")
+)
+
+(observations <- read_csv("csv/observations.csv"))
+
+(
+  observations
+  %>% filter(PATIENT %in% patients_10000)
+  %>% write.csv("measures_10000.csv")
+)
+
+(procedures <- read_csv("csv/procedures.csv"))
+
+(
+  procedures
+  %>% filter(PATIENT %in% patients_10000)
+  %>% write.csv("events_10000.csv")
+)
+
+(careplans <- read_csv("csv/careplans.csv"))
+
+(
+  careplans
+  %>% filter(PATIENT %in% patients_10000)
+  %>% write.csv("periods_10000.csv")
+)
+
